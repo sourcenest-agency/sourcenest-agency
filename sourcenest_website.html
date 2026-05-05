@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SourceNest — Moroccan Procurement Partner for European Businesses</title>
+<meta name="description" content="SourceNest connects European boutique hotels, spas, and interior designers with Morocco's finest artisan producers. Ceramics, wellness products, textiles, and more.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --tc:#C4622D;
+  --tc2:#D4845A;
+  --tc3:#E8A07A;
+  --sand:#F5EFE0;
+  --sand2:#EDE3D0;
+  --sand3:#E0D4BC;
+  --cream:#FAF7F2;
+  --deep:#1A1208;
+  --deep2:#2C1E0F;
+  --gold:#B8860B;
+  --gold2:#D4A843;
+  --gold3:#E8C878;
+  --muted:#6B5C3E;
+  --muted2:#8A7558;
+  --light:#FDF9F4;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--deep);overflow-x:hidden}
+
+/* GRAIN */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;opacity:.5
+}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.5rem 5rem;
+  transition:all .4s ease;
+}
+nav.scrolled{
+  background:rgba(250,247,242,.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(196,98,45,.1);
+  padding:1rem 5rem;
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.35rem;font-weight:500;
+  letter-spacing:.06em;color:white;
+  text-decoration:none;transition:color .3s;
+}
+nav.scrolled .nav-logo{color:var(--deep)}
+.nav-logo span{color:var(--tc3)}
+nav.scrolled .nav-logo span{color:var(--tc)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{
+  font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.65);text-decoration:none;
+  transition:color .3s;font-weight:300;
+}
+nav.scrolled .nav-links a{color:var(--muted)}
+.nav-links a:hover,.nav-links a:focus{color:var(--tc3)}
+nav.scrolled .nav-links a:hover{color:var(--tc)}
+.nav-btn{
+  font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;
+  padding:.55rem 1.5rem;border:1px solid rgba(255,255,255,.35);
+  color:white;text-decoration:none;transition:all .3s;font-weight:300;
+}
+nav.scrolled .nav-btn{border-color:var(--tc);color:var(--tc)}
+.nav-btn:hover{background:var(--tc);border-color:var(--tc);color:white}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;position:relative;
+  display:flex;align-items:center;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  /* 📸 EDIT: Replace this URL with any atmospheric Moroccan photo from unsplash.com */
+  background:
+    linear-gradient(135deg,rgba(26,18,8,.88) 0%,rgba(26,18,8,.55) 55%,rgba(196,98,45,.25) 100%),
+    url('https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=1800&q=85') center/cover no-repeat;
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 55%,var(--cream));
+}
+.hero-zellige{
+  position:absolute;right:0;top:0;
+  width:50%;height:100%;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M30 0l4 12h12l-10 7 4 12-10-7-10 7 4-12-10-7h12z'/%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-content{
+  position:relative;z-index:2;
+  padding:0 5rem;max-width:740px;
+  opacity:0;animation:fadeUp .9s .15s forwards ease;
+}
+.hero-label{
+  display:flex;align-items:center;gap:1rem;margin-bottom:2rem;
+}
+.hero-label::before{content:'';width:36px;height:1px;background:var(--tc2)}
+.hero-label span{
+  font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--tc2);font-weight:300;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,5.5vw,5.2rem);
+  font-weight:300;line-height:1.08;
+  color:white;margin-bottom:1.8rem;
+}
+.hero h1 em{font-style:italic;color:var(--tc2)}
+.hero-sub{
+  font-size:.92rem;line-height:1.95;
+  color:rgba(255,255,255,.58);font-weight:300;
+  max-width:460px;margin-bottom:2.8rem;
+}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{
+  padding:.85rem 2.2rem;background:var(--tc);color:white;
+  text-decoration:none;font-size:.7rem;letter-spacing:.15em;
+  text-transform:uppercase;font-family:'Jost',sans-serif;
+  font-weight:400;border:none;cursor:pointer;
+  transition:all .3s;display:inline-block;
+}
+.btn-primary:hover{background:#A8521F;transform:translateY(-2px)}
+.btn-outline{
+  padding:.85rem 2.2rem;border:1px solid rgba(255,255,255,.32);
+  color:white;text-decoration:none;font-size:.7rem;
+  letter-spacing:.15em;text-transform:uppercase;
+  font-family:'Jost',sans-serif;font-weight:300;
+  transition:all .3s;display:inline-block;
+}
+.btn-outline:hover{border-color:white;background:rgba(255,255,255,.08)}
+.btn-outline.dark{border-color:var(--tc);color:var(--tc)}
+.btn-outline.dark:hover{background:var(--tc);color:white}
+.scroll-cue{
+  position:absolute;bottom:2.5rem;left:5rem;z-index:2;
+  display:flex;align-items:center;gap:.8rem;
+  opacity:0;animation:fadeIn 1s 1.1s forwards;
+}
+.scroll-cue span{
+  font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);font-weight:300;
+}
+.scroll-line{
+  width:1px;height:38px;
+  background:linear-gradient(to bottom,rgba(255,255,255,.35),transparent);
+  animation:pulse 2.2s infinite ease;
+}
+
+/* ─── TICKER ─── */
+.ticker{
+  background:var(--tc);padding:.72rem 0;overflow:hidden;
+  position:relative;z-index:3;
+}
+.ticker-track{
+  display:flex;width:max-content;
+  animation:ticker 28s linear infinite;
+}
+.ticker-item{
+  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);font-weight:300;
+  padding:0 2.5rem;white-space:nowrap;
+}
+.ticker-dot{color:rgba(255,255,255,.35);margin:0 .3rem}
+
+/* ─── SECTION BASICS ─── */
+.section-tag{
+  display:flex;align-items:center;gap:1rem;margin-bottom:1rem;
+}
+.section-tag::before{content:'';width:28px;height:1px;background:var(--tc)}
+.section-tag span{
+  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--tc);font-weight:400;
+}
+.section-tag.light::before{background:var(--gold2)}
+.section-tag.light span{color:var(--gold2)}
+
+.section-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,3.2vw,3rem);
+  font-weight:300;line-height:1.18;color:var(--deep);
+}
+.section-h em{font-style:italic;color:var(--tc)}
+.section-h.light{color:var(--cream)}
+.section-h.light em{color:var(--tc2)}
+
+.divider{
+  display:flex;align-items:center;gap:1.5rem;
+  padding:0 5rem;margin:.5rem 0;
+}
+.divider-line{
+  flex:1;height:1px;
+  background:linear-gradient(to right,transparent,var(--sand2),transparent);
+}
+.divider-gem{color:var(--gold);font-size:.9rem;opacity:.6}
+
+/* REVEAL */
+.r{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.r.in{opacity:1;transform:translateY(0)}
+.r.d1{transition-delay:.1s}.r.d2{transition-delay:.2s}
+.r.d3{transition-delay:.3s}.r.d4{transition-delay:.4s}
+
+/* ─── TRUST BAR ─── */
+.trust-bar{
+  background:var(--sand);
+  padding:2.8rem 5rem;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2rem;border-bottom:1px solid var(--sand2);
+}
+.trust-item{
+  display:flex;flex-direction:column;
+  align-items:flex-start;gap:.3rem;
+  border-left:2px solid var(--sand2);
+  padding-left:1.5rem;
+}
+.trust-item:first-child{border:none;padding:0}
+.trust-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem;font-weight:300;color:var(--tc);line-height:1;
+}
+.trust-label{
+  font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);font-weight:300;
+}
+
+/* ─── ABOUT ─── */
+.about{
+  padding:8rem 5rem;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:7rem;align-items:center;
+}
+.about p{
+  font-size:.88rem;line-height:2;
+  color:var(--muted);font-weight:300;margin-bottom:1.1rem;
+}
+.about-img{
+  width:100%;aspect-ratio:3/4;
+  position:relative;overflow:hidden;
+}
+.about-img-inner{
+  width:100%;height:100%;
+  /* 📸 EDIT: Replace this URL with a photo of Moroccan artisan or medina from unsplash.com */
+  background:url('https://images.unsplash.com/photo-1590845947376-2638caa89309?w=900&q=85') center/cover no-repeat;
+  transition:transform 6s ease;
+}
+.about-img:hover .about-img-inner{transform:scale(1.04)}
+.about-badge{
+  position:absolute;bottom:-1.5rem;left:-1.5rem;
+  background:var(--cream);
+  padding:1.4rem 2rem;
+  border-left:3px solid var(--tc);
+  box-shadow:0 4px 30px rgba(26,18,8,.08);
+}
+.about-badge p{
+  font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted2);margin:0;line-height:1.5;
+}
+.about-badge strong{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;font-weight:400;
+  color:var(--deep);display:block;margin-top:3px;
+}
+.about-pillars{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1rem;margin-top:2rem;
+}
+.pillar{
+  padding:1.2rem 1.4rem;
+  background:var(--sand);
+  border-bottom:2px solid transparent;
+  transition:border-color .3s;
+}
+.pillar:hover{border-bottom-color:var(--tc)}
+.pillar h4{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;font-weight:500;
+  color:var(--deep);margin-bottom:.3rem;
+}
+.pillar p{
+  font-size:.75rem;color:var(--muted);
+  line-height:1.6;margin:0;font-weight:300;
+}
+
+/* ─── PACKAGES ─── */
+.packages{
+  padding:8rem 5rem;
+  background:var(--sand);position:relative;overflow:hidden;
+}
+.packages::before{
+  content:'';position:absolute;
+  right:-150px;top:-150px;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(196,98,45,.07),transparent 70%);
+  pointer-events:none;
+}
+.packages-header{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:end;margin-bottom:4.5rem;
+}
+.packages-header p{
+  font-size:.88rem;line-height:1.95;
+  color:var(--muted);font-weight:300;
+}
+.pkg-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+}
+.pkg-card{
+  background:var(--cream);
+  position:relative;overflow:hidden;
+  transition:transform .35s ease,box-shadow .35s ease;
+  cursor:default;
+}
+.pkg-card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 20px 60px rgba(26,18,8,.1);
+}
+.pkg-card-img{
+  height:240px;
+  background-size:cover;background-position:center;
+  position:relative;overflow:hidden;
+}
+.pkg-card-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 30%,rgba(26,18,8,.75));
+  transition:opacity .35s;
+}
+.pkg-card:hover .pkg-card-img::after{opacity:.55}
+/* 📸 EDIT: Replace each background-image URL below with photos from unsplash.com */
+.pkg-card-img.hospitality{background-image:url('https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=700&q=80')}
+.pkg-card-img.wellness{background-image:url('https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=700&q=80')}
+.pkg-card-img.interiors{background-image:url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=700&q=80')}
+.pkg-card-img.retail{background-image:url('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=700&q=80')}
+.pkg-card-img.gifting{background-image:url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=700&q=80')}
+.pkg-card-img.custom{
+  background:linear-gradient(135deg,var(--deep) 0%,var(--deep2) 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.custom-icon{
+  font-size:3rem;opacity:.3;
+}
+.pkg-tag{
+  position:absolute;top:1.2rem;left:1.2rem;z-index:2;
+  background:var(--tc);color:white;
+  font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;
+  padding:.3rem .8rem;font-weight:400;
+}
+.pkg-tag.gold-tag{background:var(--gold)}
+.pkg-body{padding:1.6rem 1.8rem 2rem}
+.pkg-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;font-weight:300;
+  color:rgba(196,98,45,.18);line-height:1;margin-bottom:.3rem;
+}
+.pkg-body h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;font-weight:500;
+  color:var(--deep);margin-bottom:.5rem;
+}
+.pkg-body .pkg-target{
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--tc);font-weight:400;margin-bottom:.7rem;display:block;
+}
+.pkg-body p{
+  font-size:.78rem;color:var(--muted);
+  line-height:1.75;font-weight:300;margin-bottom:1rem;
+}
+.pkg-includes{
+  list-style:none;display:flex;flex-direction:column;gap:.35rem;
+}
+.pkg-includes li{
+  font-size:.75rem;color:var(--muted2);
+  font-weight:300;display:flex;align-items:center;gap:.6rem;
+}
+.pkg-includes li::before{
+  content:'✦';color:var(--tc);font-size:.55rem;flex-shrink:0;
+}
+
+/* ─── CUSTOM SOURCING ─── */
+.custom{
+  padding:8rem 5rem;
+  display:grid;grid-template-columns:1.1fr 1fr;
+  gap:7rem;align-items:center;
+}
+.custom-left p{
+  font-size:.88rem;line-height:2;
+  color:var(--muted);font-weight:300;margin-bottom:1.1rem;
+}
+.custom-steps{
+  display:flex;flex-direction:column;gap:0;
+  margin-top:2rem;
+}
+.custom-step{
+  display:flex;gap:1.5rem;
+  padding:1.4rem 0;
+  border-top:1px solid var(--sand2);
+  transition:padding-left .3s;
+  cursor:default;
+}
+.custom-step:hover{padding-left:.5rem}
+.step-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;font-weight:300;
+  color:var(--tc);min-width:1.5rem;margin-top:2px;
+}
+.step-content h4{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-weight:500;
+  color:var(--deep);margin-bottom:.3rem;
+}
+.step-content p{
+  font-size:.78rem;color:var(--muted);
+  line-height:1.7;font-weight:300;
+}
+.custom-visual{
+  position:relative;
+}
+/* 📸 EDIT: Replace this URL with a photo of Moroccan workshop or craft from unsplash.com */
+.custom-img{
+  width:100%;aspect-ratio:4/5;
+  background:url('https://images.unsplash.com/photo-1590845947376-2638caa89309?w=800&q=80') center/cover no-repeat;
+}
+.custom-quote{
+  position:absolute;bottom:-2rem;right:-2rem;
+  background:var(--deep);
+  padding:2rem 2.2rem;max-width:280px;
+}
+.custom-quote p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;font-weight:300;font-style:italic;
+  color:var(--cream);line-height:1.6;margin:0;
+}
+.custom-quote span{
+  display:block;margin-top:.8rem;
+  font-size:.65rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--tc2);font-weight:300;
+}
+
+/* ─── WHY ─── */
+.why{
+  padding:8rem 5rem;
+  background:var(--deep);position:relative;overflow:hidden;
+}
+.why::before{
+  content:'';position:absolute;
+  left:-200px;bottom:-200px;
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(196,98,45,.1),transparent 70%);
+  pointer-events:none;
+}
+.why-top{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:end;margin-bottom:5rem;
+}
+.why-top p{
+  font-size:.88rem;line-height:2;
+  color:rgba(250,247,242,.45);font-weight:300;
+}
+.why-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2.5rem;
+}
+.why-card{
+  border-top:1px solid rgba(196,98,45,.22);
+  padding-top:1.8rem;
+}
+.why-icon{font-size:1.6rem;margin-bottom:.9rem;display:block}
+.why-card h4{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.12rem;font-weight:400;
+  color:var(--gold2);margin-bottom:.6rem;
+}
+.why-card p{
+  font-size:.8rem;line-height:1.8;
+  color:rgba(250,247,242,.45);font-weight:300;
+}
+
+/* ─── CATEGORIES ─── */
+.categories{padding:8rem 5rem;background:var(--sand)}
+.cat-header{margin-bottom:4rem}
+.cat-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1.2rem;
+}
+.cat-item{
+  background:var(--cream);
+  padding:1.8rem 1.6rem;
+  border-bottom:3px solid transparent;
+  transition:all .3s;cursor:default;
+}
+.cat-item:hover{
+  border-bottom-color:var(--tc);
+  transform:translateY(-4px);
+}
+.cat-emoji{font-size:1.6rem;margin-bottom:.8rem;display:block}
+.cat-item h4{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;font-weight:500;
+  color:var(--deep);margin-bottom:.4rem;
+}
+.cat-item p{
+  font-size:.76rem;color:var(--muted);
+  line-height:1.65;font-weight:300;
+}
+.cat-tag{
+  display:inline-block;margin-top:.7rem;
+  font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--tc);font-weight:400;
+  border-bottom:1px solid var(--tc);padding-bottom:1px;
+}
+
+/* ─── CLIENTS ─── */
+.clients{padding:8rem 5rem}
+.clients-header{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:end;margin-bottom:4.5rem;
+}
+.clients-header p{
+  font-size:.88rem;line-height:2;
+  color:var(--muted);font-weight:300;
+}
+.clients-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+}
+.client-card{
+  padding:2.2rem 2rem;
+  background:var(--sand);
+  border-left:3px solid transparent;
+  transition:all .3s;cursor:default;
+}
+.client-card:hover{border-left-color:var(--tc);padding-left:2.5rem}
+.client-icon{font-size:1.8rem;margin-bottom:1rem;display:block}
+.client-card h4{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-weight:500;
+  color:var(--deep);margin-bottom:.5rem;
+}
+.client-card p{
+  font-size:.78rem;color:var(--muted);
+  line-height:1.75;font-weight:300;margin-bottom:.8rem;
+}
+.client-card .ideal-for{
+  font-size:.65rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--tc);font-weight:400;
+}
+
+/* ─── CONTACT ─── */
+.contact{
+  padding:8rem 5rem;
+  background:var(--deep);position:relative;overflow:hidden;
+}
+.contact::after{
+  content:'';position:absolute;
+  right:-100px;top:50%;transform:translateY(-50%);
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(184,134,11,.07),transparent 70%);
+  pointer-events:none;
+}
+.contact-inner{
+  display:grid;grid-template-columns:1fr 1.2fr;
+  gap:7rem;align-items:start;
+}
+.contact-left h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,3vw,2.8rem);
+  font-weight:300;color:var(--cream);
+  line-height:1.2;margin:.6rem 0 1.5rem;
+}
+.contact-left h2 em{font-style:italic;color:var(--tc2)}
+.contact-left p{
+  font-size:.86rem;line-height:2;
+  color:rgba(250,247,242,.45);font-weight:300;margin-bottom:2rem;
+}
+.contact-info{display:flex;flex-direction:column;gap:.9rem}
+.contact-row{
+  display:flex;align-items:center;gap:1rem;
+  font-size:.82rem;color:rgba(250,247,242,.5);
+  font-weight:300;text-decoration:none;transition:color .2s;
+}
+.contact-row:hover{color:var(--tc2)}
+.c-dot{
+  width:5px;height:5px;
+  background:var(--tc);border-radius:50%;flex-shrink:0;
+}
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg{display:flex;flex-direction:column;gap:.35rem}
+.fg label{
+  font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(250,247,242,.3);font-weight:400;
+}
+.fg input,.fg select,.fg textarea{
+  padding:.8rem 1rem;
+  background:rgba(250,247,242,.04);
+  border:1px solid rgba(250,247,242,.1);
+  color:var(--cream);
+  font-family:'Jost',sans-serif;font-size:.84rem;font-weight:300;
+  outline:none;transition:border-color .2s;resize:vertical;
+}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(250,247,242,.18)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--tc)}
+.fg select option{background:var(--deep);color:var(--cream)}
+.fg textarea{min-height:95px}
+.form-submit{
+  padding:.88rem 2.2rem;background:var(--tc);color:white;
+  border:none;font-family:'Jost',sans-serif;
+  font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;
+  cursor:pointer;transition:all .3s;align-self:flex-start;
+  font-weight:400;margin-top:.3rem;
+}
+.form-submit:hover{background:#A8521F;transform:translateY(-2px)}
+
+/* ─── FAQ ─── */
+.faq{padding:7rem 5rem;background:var(--light)}
+.faq-header{max-width:520px;margin-bottom:4rem}
+.faq-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--sand2);
+  border:1px solid var(--sand2);
+}
+.faq-item{
+  background:var(--cream);padding:1.8rem 2rem;
+  cursor:pointer;transition:background .2s;
+}
+.faq-item:hover{background:var(--sand)}
+.faq-q{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;font-weight:500;
+  color:var(--deep);margin-bottom:.6rem;
+  display:flex;justify-content:space-between;align-items:start;gap:1rem;
+}
+.faq-q::after{
+  content:'✦';color:var(--tc);
+  font-size:.7rem;flex-shrink:0;margin-top:4px;
+}
+.faq-a{
+  font-size:.8rem;color:var(--muted);
+  line-height:1.8;font-weight:300;
+}
+
+/* ─── FOOTER ─── */
+footer{
+  background:#0F0905;
+  padding:3rem 5rem;
+  display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:1rem;
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;font-weight:400;
+  color:var(--cream);letter-spacing:.06em;
+}
+.footer-logo span{color:var(--tc2)}
+.footer-links{display:flex;gap:2rem;list-style:none}
+.footer-links a{
+  font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(250,247,242,.25);text-decoration:none;
+  transition:color .2s;font-weight:300;
+}
+.footer-links a:hover{color:var(--tc2)}
+.footer-copy{
+  font-size:.68rem;color:rgba(250,247,242,.18);font-weight:300;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(28px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pulse{
+  0%,100%{opacity:.4;transform:scaleY(1)}
+  50%{opacity:.15;transform:scaleY(.5)}
+}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  nav,nav.scrolled{padding:1.2rem 2.5rem}
+  .nav-links{display:none}
+  .hero-content,.about,.custom,
+  .packages-header,.clients-header,.contact-inner,
+  .why-top,.divider{padding-left:2.5rem;padding-right:2.5rem}
+  .about,.custom,.contact-inner{grid-template-columns:1fr;gap:3rem}
+  .packages,.clients,.categories,.why,.faq,
+  .trust-bar{padding:5rem 2.5rem}
+  .pkg-grid,.clients-grid,.why-grid{grid-template-columns:1fr 1fr}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .faq-grid{grid-template-columns:1fr}
+  .trust-bar{grid-template-columns:1fr 1fr}
+  footer{padding:2rem 2.5rem;flex-direction:column;text-align:center}
+  .custom-quote{right:0;bottom:-1rem;max-width:240px}
+  .about-badge{left:0;bottom:-1rem}
+  .packages-header,.clients-header,.why-top{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .hero-content{padding:0 1.5rem}
+  .hero h1{font-size:2.5rem}
+  .pkg-grid,.clients-grid,.why-grid,.cat-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .trust-bar{grid-template-columns:1fr}
+  .footer-links{display:none}
+  .divider{padding:0 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Source<span>Nest</span></a>
+  <ul class="nav-links">
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#custom">Custom Sourcing</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-btn">Request catalogue</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-zellige"></div>
+  <div class="hero-content">
+    <div class="hero-label">
+      <!-- ✏️ EDIT: Update year or tagline here -->
+      <span>Casablanca, Morocco · Serving Europe</span>
+    </div>
+    <!-- ✏️ EDIT: Update headline if desired -->
+    <h1>Morocco's finest craft,<br>curated for <em>European</em><br>businesses</h1>
+    <p class="hero-sub">SourceNest is a Moroccan procurement partner for European boutique hotels, spas, interior designers, and concept stores. We source, verify, and deliver — personally.</p>
+    <div class="hero-actions">
+      <a href="#packages" class="btn-primary">Explore our packages</a>
+      <a href="#contact" class="btn-outline">Request catalogue</a>
+    </div>
+  </div>
+  <div class="scroll-cue">
+    <div class="scroll-line"></div>
+    <span>Discover</span>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Handcrafted Ceramics <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Natural Wellness Products <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Artisan Textiles <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Berber Jewelry <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Leather Goods <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Hospitality Accessories <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Home Decor Objects <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Curated Gifting <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Handcrafted Ceramics <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Natural Wellness Products <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Artisan Textiles <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Berber Jewelry <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Leather Goods <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Hospitality Accessories <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Home Decor Objects <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Curated Gifting <span class="ticker-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar r">
+  <div class="trust-item">
+    <span class="trust-num">100%</span>
+    <span class="trust-label">Personal quality inspection</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-num">EN·FR·AR</span>
+    <span class="trust-label">Languages spoken</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-num">B2B</span>
+    <span class="trust-label">Exclusively business clients</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-num">🇪🇺</span>
+    <span class="trust-label">Serving Europe from Casablanca</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="r">
+    <div class="section-tag"><span>Who we are</span></div>
+    <!-- ✏️ EDIT: Update all paragraph text with your own story -->
+    <h2 class="section-h" style="margin-bottom:1.5rem">A procurement partner<br>built on <em>trust</em> and craft</h2>
+    <p>Some things are made by machines. Others are made by hands that have practiced the same craft for generations. SourceNest was built to make sure the second kind reaches the businesses that value it.</p>
+    <p>Based in Casablanca, we personally visit every supplier, inspect every order before it ships, and communicate fluently in English, French, and Arabic — removing every barrier between you and the authentic Moroccan products your business deserves.</p>
+    <p>We do not source anything for anyone. We are a focused procurement partner for European businesses that understand the value of authentic craftsmanship — and need someone they can trust to deliver it reliably.</p>
+    <div class="about-pillars">
+      <div class="pillar">
+        <h4>Personal presence</h4>
+        <p>Every supplier visited. Every order inspected. Nothing ships without our approval.</p>
+      </div>
+      <div class="pillar">
+        <h4>Trilingual</h4>
+        <p>English, French, Arabic. Seamless on every side of every deal.</p>
+      </div>
+      <div class="pillar">
+        <h4>Curated only</h4>
+        <p>We source quality over volume. Every product is verified for export standard.</p>
+      </div>
+      <div class="pillar">
+        <h4>Recurring partner</h4>
+        <p>We manage your replenishment so you never run out of what works.</p>
+      </div>
+    </div>
+  </div>
+  <div class="r d2">
+    <div class="about-img">
+      <!-- 📸 EDIT: The image is set via CSS .about-img-inner background-image above -->
+      <div class="about-img-inner"></div>
+      <div class="about-badge">
+        <p>Physically based in</p>
+        <!-- ✏️ EDIT: Update location if needed -->
+        <strong>Casablanca, Morocco</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-gem">✦</span>
+  <div class="divider-line"></div>
+</div>
+
+<!-- PACKAGES -->
+<section class="packages" id="packages">
+  <div class="packages-header">
+    <div class="r">
+      <div class="section-tag"><span>Curated packages</span></div>
+      <h2 class="section-h">Complete Moroccan sourcing<br>solutions for <em>your industry</em></h2>
+    </div>
+    <div class="r d2">
+      <p>We have designed specific procurement packages for each type of European buyer we serve. Each package is a complete, coordinated sourcing solution — not a product list. Every package can be customised to your brand's exact aesthetic and requirements.</p>
+    </div>
+  </div>
+
+  <div class="pkg-grid">
+
+    <!-- Package 1 -->
+    <div class="pkg-card r">
+      <div class="pkg-card-img hospitality">
+        <span class="pkg-tag">Hospitality</span>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-num">01</div>
+        <!-- ✏️ EDIT: Update package names, targets, descriptions, and includes -->
+        <h3>The Table Collection</h3>
+        <span class="pkg-target">For restaurants · boutique hotels · F&B concepts</span>
+        <p>A complete Moroccan tableware and ambiance sourcing package for hospitality businesses. From handpainted ceramic plates to brass tea trays and lanterns — everything to create an authentic Moroccan dining aesthetic.</p>
+        <ul class="pkg-includes">
+          <li>Hand-painted ceramic dinner plates & bowls</li>
+          <li>Ceramic tagines for presentation service</li>
+          <li>Moroccan tea glasses & brass trays</li>
+          <li>Table lanterns & decorative candle holders</li>
+          <li>Zellige tile coasters & ceramic serving pieces</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Package 2 -->
+    <div class="pkg-card r d1">
+      <div class="pkg-card-img wellness">
+        <span class="pkg-tag">Wellness</span>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-num">02</div>
+        <h3>The Hammam Collection</h3>
+        <span class="pkg-target">For spas · wellness retreats · boutique hotels with spa</span>
+        <p>A complete Moroccan hammam ritual sourcing package. Everything a European spa needs to offer an authentic Moroccan wellness experience — from bulk treatment products to retail-ready packaged items for guest purchase.</p>
+        <ul class="pkg-includes">
+          <li>Savon beldi in bulk — treatment & retail sizes</li>
+          <li>Rhassoul clay — treatment & retail formats</li>
+          <li>Argan oil — cosmetic grade</li>
+          <li>Rose water & orange blossom water</li>
+          <li>Kessa gloves & hammam accessories</li>
+          <li>Ceramic soap dishes & oil burners</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Package 3 -->
+    <div class="pkg-card r d2">
+      <div class="pkg-card-img interiors">
+        <span class="pkg-tag">Interiors</span>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-num">03</div>
+        <h3>The Décor Collection</h3>
+        <span class="pkg-target">For interior designers · boutique hotels · property developers</span>
+        <p>A complete Moroccan interior décor sourcing solution for hospitality and residential projects. Coordinated pieces that create a cohesive Moroccan aesthetic — from statement furniture to decorative accents.</p>
+        <ul class="pkg-includes">
+          <li>Handwoven rugs & kilims — custom sizes</li>
+          <li>Leather poufs in coordinated colorways</li>
+          <li>Floor & hanging Moroccan lanterns</li>
+          <li>Cedar wood decorative objects</li>
+          <li>Hand-painted ceramic decorative pieces</li>
+          <li>Berber cushion covers & throws</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Package 4 -->
+    <div class="pkg-card r">
+      <div class="pkg-card-img retail">
+        <span class="pkg-tag">Retail</span>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-num">04</div>
+        <h3>The Boutique Collection</h3>
+        <span class="pkg-target">For concept stores · lifestyle boutiques · gift shops</span>
+        <p>A curated Moroccan lifestyle collection for European retail boutiques and concept stores. Artisan objects, jewelry, and beauty products that offer your customers something genuinely unique — impossible to find through mass suppliers.</p>
+        <ul class="pkg-includes">
+          <li>Berber silver & brass jewelry — rings, bangles, pendants</li>
+          <li>Leather card holders & small wallets</li>
+          <li>Hand-painted small ceramic bowls & espresso cups</li>
+          <li>Cedar wood jewelry boxes & objects</li>
+          <li>Packaged Moroccan beauty sets</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Package 5 -->
+    <div class="pkg-card r d1">
+      <div class="pkg-card-img gifting">
+        <span class="pkg-tag gold-tag">Premium</span>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-num">05</div>
+        <h3>The Gifting Collection</h3>
+        <span class="pkg-target">For corporate gifting · luxury events · hospitality amenities</span>
+        <p>Curated Moroccan gift sets for corporate clients, luxury events, and hotel in-room amenity programs. Each gift set tells an authentic Moroccan story — the kind of gift that is remembered and talked about.</p>
+        <ul class="pkg-includes">
+          <li>Custom gift sets — argan oil, savon beldi, rose water</li>
+          <li>Cedar wood presentation boxes</li>
+          <li>Small hand-painted ceramic pieces</li>
+          <li>Packaged Berber jewelry pieces</li>
+          <li>Brand story cards in EN · FR · AR</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Package 6 — Custom -->
+    <div class="pkg-card r d2">
+      <div class="pkg-card-img custom">
+        <span class="custom-icon">✦</span>
+        <span class="pkg-tag gold-tag">Bespoke</span>
+      </div>
+      <div class="pkg-body">
+        <div class="pkg-num">06</div>
+        <h3>Custom Sourcing</h3>
+        <span class="pkg-target">For any European business with specific requirements</span>
+        <p>Your project does not fit a standard package. That is fine — most of our best client relationships started with a completely custom brief. Tell us what you need and we will design a sourcing solution around your exact requirements, budget, and timeline.</p>
+        <ul class="pkg-includes">
+          <li>Custom supplier identification</li>
+          <li>Bespoke product specification</li>
+          <li>Sample procurement before commitment</li>
+          <li>Full project management</li>
+          <li>Flexible MOQ for first orders</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CUSTOM SOURCING PROCESS -->
+<section class="custom" id="custom">
+  <div class="custom-left r">
+    <div class="section-tag"><span>How it works</span></div>
+    <h2 class="section-h" style="margin-bottom:1.5rem">Simple, transparent,<br><em>personal</em> from start to finish</h2>
+    <p>Every order we handle follows the same rigorous process. No shortcuts. No assumptions. No surprises on delivery. Whether you are ordering 20 ceramic plates or furnishing a 30-room boutique hotel, the process is the same.</p>
+    <p>You focus on your business. We handle Morocco.</p>
+    <div class="custom-steps">
+      <!-- ✏️ EDIT: Update process steps if needed -->
+      <div class="custom-step">
+        <span class="step-num">01</span>
+        <div class="step-content">
+          <h4>You brief us</h4>
+          <p>Tell us what you need — product type, quantity, budget, timeline, and your aesthetic requirements. No commitment at this stage.</p>
+        </div>
+      </div>
+      <div class="custom-step">
+        <span class="step-num">02</span>
+        <div class="step-content">
+          <h4>We source and propose</h4>
+          <p>We identify the right suppliers, visit them personally, and send you a detailed proposal with photos, specifications, and a transparent quote.</p>
+        </div>
+      </div>
+      <div class="custom-step">
+        <span class="step-num">03</span>
+        <div class="step-content">
+          <h4>Quality inspection</h4>
+          <p>Once you confirm the order, we inspect every piece before shipment and send you approval photos. Nothing ships without your confirmation.</p>
+        </div>
+      </div>
+      <div class="custom-step">
+        <span class="step-num">04</span>
+        <div class="step-content">
+          <h4>Delivered to Europe</h4>
+          <p>We coordinate all logistics, export documentation, and customs. You receive a tracking number and updates at every stage.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="r d2">
+    <div class="custom-visual">
+      <!-- 📸 EDIT: Replace the .custom-img background-image URL in the CSS above -->
+      <div class="custom-img"></div>
+      <div class="custom-quote">
+        <p>"Morocco has been crafting for the world for centuries. We simply make it easier for the world to receive it."</p>
+        <span>— Maysa, Founder of SourceNest</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="why-top r">
+    <div>
+      <div class="section-tag light"><span>Why SourceNest</span></div>
+      <h2 class="section-h light" style="margin-top:.5rem">Why European businesses<br>choose to work with <em>us</em></h2>
+    </div>
+    <p>Sourcing from Morocco as a European business is full of friction — language barriers, trust gaps, quality inconsistencies, logistics complexity. We exist to remove all of it.</p>
+  </div>
+  <div class="why-grid">
+    <!-- ✏️ EDIT: Update any why cards as needed -->
+    <div class="why-card r">
+      <span class="why-icon">🏛</span>
+      <h4>Physically in Morocco</h4>
+      <p>We are based in Casablanca with direct access to every major artisan market. Every supplier is visited in person before we recommend them to a single client.</p>
+    </div>
+    <div class="why-card r d1">
+      <span class="why-icon">🌐</span>
+      <h4>Truly trilingual</h4>
+      <p>Fluent in English, French, and Arabic. We negotiate with your Moroccan suppliers in their language and report back to you in yours. Nothing is lost in translation.</p>
+    </div>
+    <div class="why-card r d2">
+      <span class="why-icon">✦</span>
+      <h4>Personal service</h4>
+      <p>You work directly with Maysa — founder and sourcing operator. Not a call center. Not an automated portal. A real person who knows your account by heart.</p>
+    </div>
+    <div class="why-card r d1">
+      <span class="why-icon">🔍</span>
+      <h4>Zero compromise on quality</h4>
+      <p>Every shipment is inspected and photographed before it leaves Morocco. You approve before it ships. No surprises. No excuses. No damaged deliveries.</p>
+    </div>
+    <div class="why-card r d2">
+      <span class="why-icon">📦</span>
+      <h4>Flexible minimums</h4>
+      <p>We work with businesses at every stage. First orders, sample trials, and growing accounts are all welcome. You do not need large volumes to start working with us.</p>
+    </div>
+    <div class="why-card r d3">
+      <span class="why-icon">🔄</span>
+      <h4>Built for recurring orders</h4>
+      <p>We track your replenishment cycles and proactively reach out before you run out. Your Moroccan procurement runs itself — because we manage it for you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT CATEGORIES -->
+<section class="categories">
+  <div class="cat-header r">
+    <div class="section-tag"><span>Product categories</span></div>
+    <h2 class="section-h" style="margin-top:.5rem">Everything we source from Morocco</h2>
+  </div>
+  <div class="cat-grid">
+    <!-- ✏️ EDIT: Update category names, descriptions, and tags -->
+    <div class="cat-item r">
+      <span class="cat-emoji">🏺</span>
+      <h4>Ceramics & Tableware</h4>
+      <p>Hand-painted plates, tagines, bowls, espresso cups, tea glasses, and decorative pieces from the workshops of Fes and Safi.</p>
+      <span class="cat-tag">High repeatability</span>
+    </div>
+    <div class="cat-item r d1">
+      <span class="cat-emoji">🌿</span>
+      <h4>Natural Beauty & Wellness</h4>
+      <p>Savon beldi, rhassoul clay, argan oil, rose water, kohl, and traditional Moroccan beauty ingredients for spas and wellness brands.</p>
+      <span class="cat-tag">Monthly recurring</span>
+    </div>
+    <div class="cat-item r d2">
+      <span class="cat-emoji">🕌</span>
+      <h4>Home Decor & Lighting</h4>
+      <p>Moroccan lanterns, leather poufs, cedar wood objects, brass trays, and decorative pieces for hospitality and residential interiors.</p>
+      <span class="cat-tag">High margin</span>
+    </div>
+    <div class="cat-item r d3">
+      <span class="cat-emoji">🧶</span>
+      <h4>Textiles & Rugs</h4>
+      <p>Handwoven Moroccan rugs, kilims, Berber blankets, hammam towels, and embroidered cushion covers in authentic artisan patterns.</p>
+      <span class="cat-tag">Premium positioning</span>
+    </div>
+    <div class="cat-item r">
+      <span class="cat-emoji">✨</span>
+      <h4>Berber Jewelry</h4>
+      <p>Silver, brass, and amber pieces handcrafted in Tiznit. Rings, bangles, khamsa pendants, and statement necklaces rooted in Amazigh heritage.</p>
+      <span class="cat-tag">High margin</span>
+    </div>
+    <div class="cat-item r d1">
+      <span class="cat-emoji">👜</span>
+      <h4>Leather Goods</h4>
+      <p>Handmade bags, wallets, card holders, babouche slippers, and accessories from Morocco's renowned tanneries in Fes and Marrakech.</p>
+      <span class="cat-tag">Artisan certified</span>
+    </div>
+    <div class="cat-item r d2">
+      <span class="cat-emoji">🎁</span>
+      <h4>Curated Gifting</h4>
+      <p>Bespoke Moroccan gift sets for corporate gifting, luxury events, and hotel amenity programs. Custom packaging and brand story cards available.</p>
+      <span class="cat-tag">Highest margins</span>
+    </div>
+    <div class="cat-item r d3">
+      <span class="cat-emoji">🌲</span>
+      <h4>Cedar Wood Objects</h4>
+      <p>Hand-carved cedar boxes, frames, trays, and decorative pieces. Naturally aromatic and uniquely Moroccan. Ideal for retail and gifting.</p>
+      <span class="cat-tag">Unique to Morocco</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section class="clients">
+  <div class="clients-header">
+    <div class="r">
+      <div class="section-tag"><span>Who we serve</span></div>
+      <h2 class="section-h">Built exclusively for<br><em>European B2B buyers</em></h2>
+    </div>
+    <div class="r d2">
+      <p>SourceNest works exclusively with businesses — not individual consumers. We partner with European companies that have recurring procurement needs and understand the value of working with a dedicated, reliable Moroccan sourcing partner over the long term.</p>
+    </div>
+  </div>
+  <div class="clients-grid">
+    <!-- ✏️ EDIT: Update client types if needed -->
+    <div class="client-card r">
+      <span class="client-icon">🏨</span>
+      <h4>Boutique Hotels</h4>
+      <p>Independent boutique hotels sourcing authentic tableware, room decor, spa products, and ambiance accessories for their properties. Opening projects and ongoing replenishment.</p>
+      <span class="ideal-for">Table · Hammam · Décor Collections</span>
+    </div>
+    <div class="client-card r d1">
+      <span class="client-icon">🧘</span>
+      <h4>Spas & Wellness Retreats</h4>
+      <p>European spa operators and wellness retreat owners needing authentic Moroccan hammam products for their treatments and retail. Monthly recurring procurement.</p>
+      <span class="ideal-for">Hammam Collection · Custom</span>
+    </div>
+    <div class="client-card r d2">
+      <span class="client-icon">🎨</span>
+      <h4>Interior Designers</h4>
+      <p>European interior designers and architecture studios specifying boutique hotel and residential projects with Moroccan or Mediterranean aesthetic requirements.</p>
+      <span class="ideal-for">Décor · Table · Custom Collections</span>
+    </div>
+    <div class="client-card r">
+      <span class="client-icon">🛍</span>
+      <h4>Concept Stores & Boutiques</h4>
+      <p>Independent European lifestyle boutiques and concept stores seeking authentic, story-rich Moroccan products that their customers cannot find through mass suppliers.</p>
+      <span class="ideal-for">Boutique · Gifting Collections</span>
+    </div>
+    <div class="client-card r d1">
+      <span class="client-icon">🍽</span>
+      <h4>Restaurants & Cafes</h4>
+      <p>European restaurants and cafe groups with a Mediterranean or global aesthetic sourcing distinctive ceramic tableware, decorative objects, and ambiance accessories.</p>
+      <span class="ideal-for">Table Collection · Custom</span>
+    </div>
+    <div class="client-card r d2">
+      <span class="client-icon">🎁</span>
+      <h4>Corporate Gifting</h4>
+      <p>European companies and event agencies seeking premium, story-rich Moroccan gift sets for client gifting, corporate events, and luxury amenity programs.</p>
+      <span class="ideal-for">Gifting Collection · Custom</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-header r">
+    <div class="section-tag"><span>Questions</span></div>
+    <h2 class="section-h" style="margin-top:.5rem">Everything you need<br>to know before starting</h2>
+  </div>
+  <div class="faq-grid r">
+    <!-- ✏️ EDIT: Update FAQ questions and answers as needed -->
+    <div class="faq-item">
+      <div class="faq-q">What is the minimum order quantity?</div>
+      <p class="faq-a">We are flexible, especially for first orders. Sample orders of 5-20 units are welcome to test quality before committing to larger volumes. Minimum order values vary by product category — contact us for specific details on your product of interest.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How do I know the quality will be consistent?</div>
+      <p class="faq-a">Every order is personally inspected by us in Casablanca before shipment. We photograph every piece and send you an approval gallery before anything leaves Morocco. Nothing ships without your explicit confirmation. We also work exclusively with verified suppliers who have demonstrated quality consistency.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How long does shipping take to Europe?</div>
+      <p class="faq-a">Sea freight from Casablanca to France, Belgium, Spain, Netherlands, and Portugal typically takes 7-14 days once the shipment is collected. Air freight is available for urgent orders and typically takes 3-5 days. We always build a production and quality check buffer into our quoted timelines.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do you handle customs and export documentation?</div>
+      <p class="faq-a">Yes. We coordinate all export documentation on the Moroccan side through our established freight forwarding partners, including commercial invoices, packing lists, certificates of origin, and EUR.1 certificates where applicable for preferential EU tariffs under the EU-Morocco Association Agreement.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I see samples before placing a full order?</div>
+      <p class="faq-a">Absolutely. We recommend starting with a sample order for any new product category. This allows you to verify quality, assess fit with your aesthetic, and build confidence in the supplier relationship before committing to larger volumes. Sample orders are fully credited against your first bulk order.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How do I pay and what currency?</div>
+      <p class="faq-a">We invoice in euros. Payment is by bank transfer — 50% deposit on order confirmation and 50% balance after quality inspection approval, before shipment. For established repeat clients, payment terms can be discussed. We use a professional European payment account for seamless international transfers.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can you source products not in your catalogue?</div>
+      <p class="faq-a">Yes — custom sourcing is one of our core services. If you have a specific product brief, a reference image, or a concept you want to bring to life from Morocco, contact us with the details and we will assess feasibility, identify the right suppliers, and send you a sourcing proposal within 48 hours.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do you work with small businesses?</div>
+      <p class="faq-a">Yes. We specifically designed our service to be accessible for independent boutique businesses — not just large hotel chains or major retailers. If you are a small spa, an independent restaurant, or a new concept store looking for a reliable Moroccan sourcing partner, we are exactly the right fit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left r">
+      <div class="section-tag light"><span>Get in touch</span></div>
+      <!-- ✏️ EDIT: Update heading if desired -->
+      <h2>Ready to source<br>from <em>Morocco?</em></h2>
+      <p>Tell us about your business and what you are looking for. We respond within 48 hours with a personalised sourcing proposal. No commitment required to begin the conversation.</p>
+      <div class="contact-info">
+        <!-- ✏️ EDIT: Update all contact details below -->
+        <a href="mailto:hello@sourcenest.agency" class="contact-row">
+          <span class="c-dot"></span>
+          hello@sourcenest.agency
+        </a>
+        <span class="contact-row">
+          <span class="c-dot"></span>
+          Casablanca & Mohammedia, Morocco
+        </span>
+        <span class="contact-row">
+          <span class="c-dot"></span>
+          Serving boutique businesses across Europe
+        </span>
+        <!-- ✏️ EDIT: Uncomment and update when you have a WhatsApp number -->
+        <!--
+        <a href="https://wa.me/212XXXXXXXXX" class="contact-row">
+          <span class="c-dot"></span>
+          WhatsApp: +212 XXX XXX XXX
+        </a>
+        -->
+        <!-- ✏️ EDIT: Uncomment and update when you have an Instagram -->
+        <!--
+        <a href="https://instagram.com/sourcenest.agency" class="contact-row">
+          <span class="c-dot"></span>
+          @sourcenest.agency
+        </a>
+        -->
+      </div>
+    </div>
+    <div class="r d2">
+      <form class="contact-form" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <div class="fg">
+            <label>First name</label>
+            <input type="text" placeholder="Sophie" required>
+          </div>
+          <div class="fg">
+            <label>Last name</label>
+            <input type="text" placeholder="Martin" required>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Business email</label>
+          <input type="email" placeholder="sophie@yourbusiness.com" required>
+        </div>
+        <div class="fg">
+          <label>Company or business name</label>
+          <input type="text" placeholder="Hotel Le Petit Atlas">
+        </div>
+        <div class="fg">
+          <label>Business type</label>
+          <select>
+            <option value="">Select your business type</option>
+            <option>Boutique hotel</option>
+            <option>Spa or wellness retreat</option>
+            <option>Restaurant or cafe</option>
+            <option>Interior designer or architect</option>
+            <option>Concept store or lifestyle boutique</option>
+            <option>Corporate gifting company</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Package or category of interest</label>
+          <select>
+            <option value="">Select a package or category</option>
+            <option>The Table Collection — ceramics & hospitality</option>
+            <option>The Hammam Collection — wellness & spa</option>
+            <option>The Décor Collection — interiors & decor</option>
+            <option>The Boutique Collection — retail & lifestyle</option>
+            <option>The Gifting Collection — corporate & events</option>
+            <option>Custom sourcing — I have a specific brief</option>
+            <option>Multiple categories — I'll explain below</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Tell us about your project or requirements</label>
+          <textarea placeholder="What products are you looking for? Approximate quantities, budget range, delivery country, timeline, and any specific aesthetic requirements..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send enquiry ✦</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Source<span>Nest</span></div>
+  <ul class="footer-links">
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#custom">Process</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <!-- ✏️ EDIT: Update year if needed -->
+  <span class="footer-copy">© 2025 SourceNest — Casablanca, Morocco · hello@sourcenest.agency</span>
+</footer>
+
+<script>
+// NAV SCROLL BEHAVIOUR
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// SCROLL REVEAL
+const reveals = document.querySelectorAll('.r');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(r => observer.observe(r));
+
+// FORM SUBMIT
+function submitForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  const original = btn.textContent;
+  btn.textContent = 'Enquiry sent — we\'ll be in touch within 48 hours ✦';
+  btn.style.background = '#2A6338';
+  btn.style.padding = '.88rem 1.5rem';
+  setTimeout(() => {
+    btn.textContent = original;
+    btn.style.background = '';
+    btn.style.padding = '';
+    e.target.reset();
+  }, 5000);
+}
+</script>
+</body>
+</html>
